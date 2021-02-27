@@ -1,25 +1,27 @@
-import threading
 from dataRetriever import DataRetriever
-from keyboardListener import KeyboardListener
 
 class main():
     def __init__(self):
-        _DataReceiver = DataRetriever()
-        _KeyboardListener = KeyboardListener()
+        prev_data = None
 
-        toProceed = not _KeyboardListener.getToTerminate()
-        while toProceed:
-            toProceed = not _KeyboardListener.getToTerminate()
-            if toProceed:
+        _DataReceiver = DataRetriever() # Will create another Thread
+
+        while _DataReceiver.getToProceed():
+            data = _DataReceiver.getUDPdata()
+
+            if _DataReceiver.getToProceed():
                 data = _DataReceiver.getUDPdata()
                 try:
-                    print(data) 
+                    if (data != prev_data):
+                        print(data) 
+
+                        prev_data = data
                 except:
                     pass
             else:
                 _DataReceiver.stopIterate()
 
+     
         
-
 if __name__ == "__main__":
     main()
