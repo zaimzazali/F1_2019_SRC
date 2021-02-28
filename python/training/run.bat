@@ -1,4 +1,5 @@
+call activate F1_2019_SRC_Env
 d:
-conda activate F1_2019_SRC_Env
 cd D:\GitClones\F1_2019_SRC\python\training
 python main.py
+pause
