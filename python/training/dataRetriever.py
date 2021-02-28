@@ -1,5 +1,6 @@
 import socket
 import threading
+import time 
 from f1_2019_telemetry.packets import unpack_udp_packet
 
 class DataRetriever:
@@ -16,6 +17,16 @@ class DataRetriever:
     def getToProceed(self):
         return self.__toProceed
 
+    def startCountdown(self, myTiming):
+        while myTiming >= 0 and not self.__hadFlow: 
+            timerStr = 'Trying to get the data... {:02d} to timeout'.format(myTiming) 
+            if (myTiming < 1):
+                print(timerStr) 
+            else:
+                print(timerStr, end="\r") 
+            time.sleep(1) 
+            myTiming -= 1
+
     def startStreamData(self):
         initial_timeout = 10
         altered_timeout = 0.5
@@ -23,7 +34,12 @@ class DataRetriever:
             # Open and Connect to Socket
             udp_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
             udp_socket.bind(('', 20777))
-            udp_socket.settimeout(initial_timeout) # Try for few seconds
+            udp_socket.settimeout(initial_timeout + 1) # Try for few seconds
+
+            # Start the timeout countdown
+            print()
+            __th2 = threading.Thread(target=self.startCountdown, args=(initial_timeout,))
+            __th2.start()
 
             # Get the Data
             while self.__toProceed:

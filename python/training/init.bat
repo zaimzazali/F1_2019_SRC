@@ -21,7 +21,7 @@ Rem Create conda environment, if not exist
 echo -------------------------------------------
 echo Creating Conda Environment
 echo -------------------------------------------
-call conda create env --name F1_2019_SRC_Env
+call conda create env --name %env%
 
 Rem Install relevant packages
 echo -------------------------------------------
