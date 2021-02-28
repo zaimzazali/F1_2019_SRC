@@ -1,6 +1,5 @@
 @echo off 
 
-set hasConda=false 
 set env=F1_2019_SRC_Env 
 
 rem Check if the computer has Anaconda
