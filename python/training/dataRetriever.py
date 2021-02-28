@@ -36,7 +36,7 @@ class DataRetriever:
             udp_socket.bind(('', 20777))
             udp_socket.settimeout(initial_timeout + 1) # Try for few seconds
 
-            # Start the timeout countdown
+            # Start the timeout countdown -  another thread
             print()
             __th2 = threading.Thread(target=self.startCountdown, args=(initial_timeout,))
             __th2.start()
@@ -62,5 +62,6 @@ class DataRetriever:
         try:
             __th1 = threading.Thread(target=self.startStreamData)
             __th1.start()
+            
         except Exception as e:
             print('Exception:', e, '\nERROR: Unable to start streaming thread!')
