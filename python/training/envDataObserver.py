@@ -1,4 +1,9 @@
 class EnvDataObserver:
+    '''
+    All packet data can be referred to: https://forums.codemasters.com/topic/44592-f1-2019-udp-specification/
+    Only few selected data will be used, as of now.
+    '''
+
     class MotionPacket:
         def __init__(self): 
             pass
@@ -19,11 +24,15 @@ class EnvDataObserver:
         def __init__(self): 
             pass
 
+
+
     def setData(self, myData):
         pass
 
     def getDataObject(self):
         return self
+
+
 
     def __init__(self):
         print('EnvDataObserver Instantiated!')
