@@ -22,6 +22,9 @@ class EnvDataObserver:
     def setData(self, myData):
         pass
 
+    def getDataObject(self):
+        return self
+
     def __init__(self):
         print('EnvDataObserver Instantiated!')
         self.Motion = self.MotionPacket()
