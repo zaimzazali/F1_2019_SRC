@@ -42,9 +42,9 @@ class DataRetriever:
 
 
     def __init__(self):
-        print("DataRetriever Instantiated!")
+        print('DataRetriever Instantiated!')
         try:
-            th1 = threading.Thread(target=self.startStreamData)
-            th1.start()
+            __th1 = threading.Thread(target=self.startStreamData)
+            __th1.start()
         except Exception as e:
             print('Exception:', e, '\nERROR: Unable to start streaming thread!')

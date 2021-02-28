@@ -1,23 +1,24 @@
 from dataRetriever import DataRetriever
 from envDataObserver import EnvDataObserver
+from trainer import Trainer
 
 class main():
     def __init__(self):
         __prev_data = None
 
         __DataReceiver = DataRetriever() # Will create another Thread
-        __EnvDataObserver = EnvDataObserver() # Will create another Thread
+        __EnvDataObserver = EnvDataObserver() 
+        __Trainer = Trainer() 
 
         while __DataReceiver.getToProceed():
-            data = __DataReceiver.getUDPdata()
+            __data = __DataReceiver.getUDPdata()
 
             if __DataReceiver.getToProceed():
-                data = __DataReceiver.getUDPdata()
+                __data = __DataReceiver.getUDPdata()
                 try:
-                    if (data != __prev_data):
-                        print(data) 
-
-                        __prev_data = data
+                    if (__data != __prev_data):
+                        __EnvDataObserver.setData(__data)
+                        __prev_data = __data
                 except:
                     pass
             else:

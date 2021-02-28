@@ -19,10 +19,11 @@ class EnvDataObserver:
         def __init__(self): 
             pass
 
-
+    def setData(self, myData):
+        pass
 
     def __init__(self):
-        print("EnvDataObserver Instantiated!")
+        print('EnvDataObserver Instantiated!')
         self.Motion = self.MotionPacket()
         self.Session = self.SessionPacket()
         self.LapData = self.LapDataPacket()
