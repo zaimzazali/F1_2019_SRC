@@ -38,8 +38,8 @@ class DataRetriever:
 
             # Start the timeout countdown -  another thread
             print()
-            __th2 = threading.Thread(target=self.startCountdown, args=(initial_timeout,))
-            __th2.start()
+            th2 = threading.Thread(target=self.startCountdown, args=(initial_timeout,))
+            th2.start()
 
             # Get the Data
             while self.__toProceed:
@@ -60,8 +60,8 @@ class DataRetriever:
     def __init__(self):
         print('DataRetriever Instantiated!')
         try:
-            __th1 = threading.Thread(target=self.startStreamData)
-            __th1.start()
-            
+            th1 = threading.Thread(target=self.startStreamData)
+            th1.start()
+
         except Exception as e:
             print('Exception:', e, '\nERROR: Unable to start streaming thread!')
