@@ -1,25 +1,27 @@
 from dataRetriever import DataRetriever
+from envDataObserver import EnvDataObserver
 
 class main():
     def __init__(self):
-        prev_data = None
+        __prev_data = None
 
-        _DataReceiver = DataRetriever() # Will create another Thread
+        __DataReceiver = DataRetriever() # Will create another Thread
+        __EnvDataObserver = EnvDataObserver() # Will create another Thread
 
-        while _DataReceiver.getToProceed():
-            data = _DataReceiver.getUDPdata()
+        while __DataReceiver.getToProceed():
+            data = __DataReceiver.getUDPdata()
 
-            if _DataReceiver.getToProceed():
-                data = _DataReceiver.getUDPdata()
+            if __DataReceiver.getToProceed():
+                data = __DataReceiver.getUDPdata()
                 try:
-                    if (data != prev_data):
+                    if (data != __prev_data):
                         print(data) 
 
-                        prev_data = data
+                        __prev_data = data
                 except:
                     pass
             else:
-                _DataReceiver.stopIterate()
+                __DataReceiver.stopIterate()
 
      
         
